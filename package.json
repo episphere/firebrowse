@@ -1,0 +1,23 @@
+{
+  "name": "firebrowse",
+  "version": "1.0.0",
+  "description": "interoperability support for Firebrowse Web API http://firebrowse.org/api-docs/",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/episphere/firebrowse.git"
+  },
+  "author": "Jonas Almeida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/episphere/firebrowse/issues"
+  },
+  "homepage": "https://github.com/episphere/firebrowse#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
