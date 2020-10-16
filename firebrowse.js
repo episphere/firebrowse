@@ -35,24 +35,3 @@ firebrowse.getClinical_FH=async(tcga_participant_barcodes,n=50)=>{ //(Array of c
 if(typeof(define)!='undefined'){
     define(firebrowse)
 }
-
-
-/*
-https://github.com/web4bio/webgen/blob/addClinicalFeatures/main/js/fillSelectBoxes.js#L158 
-From Richard Moffitt to Everyone: (11:59 AM)
- betterFetch = async function(url,body){
-  let fetchData = { 
-      method: 'POST', 
-      body: JSON.stringify(body),
-      headers:{'Content-Type':'application/json'}
-  };
-  let tmpData = (await fetch(url, fetchData)).json();
-  return(tmpData);
-}; https://github.com/web4bio/webgen/blob/master/archive/richard/richard.js 
-From Adit Anand to Everyone: (12:45 PM)
- I have a hard out at 12:45 today, so I sadly can't stay. Have a great weekend everyone! 
-From Soma Kobayashi to Everyone: (12:46 PM)
- <script>var exports = {"__esModule": true};</script> 
- */
-
-
