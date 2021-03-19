@@ -56,30 +56,6 @@ firebrowse.getmRNASeq=async(gene,tcga_participant_barcodes,n=50) => { //(Array o
     
 }
 
-firebrowse.getmRNASeq=async(gene,tcga_participant_barcodes,n=50) => { //(Array of codes, length of slice)
-    if(!tcga_participant_barcodes){ // composing an example
-        console.log('no barcodes provided, loading 250 tcga participant barcodes for PRAD cohort as an example')
-        tcga_participant_barcodes = await firebrowse.get('http://firebrowse.org/api/v1/Samples/mRNASeq?format=json&cohort=PRAD&gene=TP53&page=1&page_size=250&sort_by=cohort')
-        tcga_participant_barcodes=tcga_participant_barcodes.mRNASeq.map(x=>x.tcga_participant_barcode)
-    }
-    let url = 'http://firebrowse.org/api/v1/Samples/mRNASeq?format=json&tcga_participant_barcode='
-    let results = { 
-        "mRNASeq":[] 
-    }
-    let calls = []
-    for(var i=0;i<tcga_participant_barcodes.length;i+=n){
-        let codes = tcga_participant_barcodes.slice(i,i+n)
-        console.log('loading mRNASeq for:',codes)
-        calls[i]=firebrowse.get(url+codes.join(',')+'&gene='+gene).then(x=>{
-            results.mRNASeq=results.mRNASeq.concat(x.mRNASeq)
-            //debugger
-        })
-    }
-    await Promise.all(calls)
-    return results
-    
-}
-
 if(typeof(define)!='undefined'){
     define(firebrowse)
 }
