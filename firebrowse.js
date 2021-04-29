@@ -64,7 +64,7 @@ firebrowse.getClinical_FH_bf=async(tcga_participant_barcodes,clinicalFeatures,n=
 
 // Retrieve mRNASeq data
 
-firebrowse.getmRNASeq_cgb=async(cohort,gene,tcga_participant_barcodes,n=20) => { //(Array of codes, length of slice)
+firebrowse.getmRNASeq_cgb=async(cohort,gene,tcga_participant_barcodes,n=10) => { //(Array of codes, length of slice)
     if(!tcga_participant_barcodes){ // composing an example
         //console.log('no barcodes provided, loading 250 tcga participant barcodes for PRAD cohort as an example')
         tcga_participant_barcodes = await firebrowse.get('http://firebrowse.org/api/v1/Samples/mRNASeq?format=json&sample_type=TP&protocol=RSEM&cohort=PRAD&gene=TP53&page=1&page_size=250&sort_by=tcga_participant_barcode')
@@ -77,11 +77,13 @@ firebrowse.getmRNASeq_cgb=async(cohort,gene,tcga_participant_barcodes,n=20) => {
     let calls = []
     for(var i=0;i<tcga_participant_barcodes.length;i+=n){
         let codes = tcga_participant_barcodes.slice(i,i+n)
-        //console.log('loading mRNASeq for:',codes)
-        calls[i]=firebrowse.get(url+codes.join(',')+'&gene='+gene+'&cohort='+cohort).then(x=>{
-            results.mRNASeq=results.mRNASeq.concat(x.mRNASeq)
-            //debugger
-        })
+        // console.log('loading mRNASeq for:',codes)
+        for(var j=0;j<gene.length;j++) {
+            calls[i]+=firebrowse.get(url+codes.join(',')+'&gene='+gene[j]+'&cohort='+cohort).then(x=>{
+                results.mRNASeq=results.mRNASeq.concat(x.mRNASeq)
+                //debugger
+            })
+        }
     }
     await Promise.all(calls)
     return results
