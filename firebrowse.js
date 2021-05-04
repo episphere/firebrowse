@@ -80,10 +80,11 @@ firebrowse.getmRNASeq_cgb=async(cohort,gene,tcga_participant_barcodes,n=50,m=10)
         // console.log('loading mRNASeq for:',codes)
         for(var j=0;j<gene.length;j+=m) {
             let geneSlices = gene.slice(j,j+m)
-            calls[i]=firebrowse.get(url+codes.join(',')+'&gene='+geneSlices+'&cohort='+cohort).then(x=>{
+            calls[i+j]=firebrowse.get(url+codes.join(',')+'&gene='+geneSlices+'&cohort='+cohort).then(x=>{
                 results.mRNASeq=results.mRNASeq.concat(x.mRNASeq)
                 //debugger
             })
+            
         }
     }
     await Promise.all(calls)
