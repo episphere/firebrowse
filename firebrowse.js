@@ -88,7 +88,6 @@ firebrowse.getmRNASeq_cgb=async(cohort,gene,tcga_participant_barcodes,n=50,m=10)
         }
     }
     await Promise.all(calls)
-    console.log(results);
     return results
     
 }
