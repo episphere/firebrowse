@@ -5,7 +5,8 @@ firebrowse={}
 firebrowse.created_at=Date();
 
 firebrowse.get=async(url='http://firebrowse.org/api/v1/Samples/Clinical_FH?format=json&cohort=PRAD&fh_cde_name=psa_value&page=1&page_size=250&sort_by=cohort')=>{
-    return (await fetch('https://firebrowse.herokuapp.com/?'+url)).json()
+    //return (await fetch('https://firebrowse.herokuapp.com/?'+url)).json()
+    return (await fetch('https://firebrowse.jonasalmeida.repl.co?'+url)).json()
 }
 
 // ---------------------------------------------------------------------------------------------------
